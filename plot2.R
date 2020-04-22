@@ -1,12 +1,6 @@
 ## This script creates Plot 2
 
-## Step 1: Read the data
-## Step 2: First create the local plot
-## Step 3: Set the labels
-## Step 4: Create the PNG file
-
 ## Our overall goal here is simply to examine how household energy usage varies over a 2-day period in February, 2007
-
 ## Plot 2: Global_active_power during these two days
 
 library(dplyr)
@@ -33,17 +27,15 @@ Allneededdataplot2 <- filter(Allthedata, V1 >= "2007-02-01" & V1 <= "2007-02-02"
 namescolumns <- c("Date", "Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
 colnames(Allneededdataplot2) <- namescolumns
 
-## Converting the data from Factor to numeric, would be nicer to do this for all columns whic should be numeric (V3 .. V9)
+## Converting the data from Factor to numeric
 Allneededdataplot2$Global_active_power <- as.numeric(paste(Allneededdataplot2$Global_active_power)) 
 
 
-
-## Till this point exactly the same as for plot1
 ## Creating an extra column to the dataset with combined day and time
 Allneededdataplot2 <- mutate(Allneededdataplot2, DT = paste(Date, Time))
 
 ## Convert this extra column to a format it can be plotted (using the lubridate library)
-Allneededdataplot2$DT <- as_datetime(Allneededdataplot2$DT, tz = "UTC", format = NULL) ## Looks correct, library lubridate
+Allneededdataplot2$DT <- as_datetime(Allneededdataplot2$DT, tz = "UTC", format = NULL) 
                                     
 ## Creating the png file in the working directory
 

@@ -1,7 +1,6 @@
 ## This script creates Plot 4
 
 ## Our overall goal here is simply to examine how household energy usage varies over a 2-day period in February, 2007
-
 ## Plot 4: 4 plots, using plot 2 and plot 3 and creating two new plots, voltage use and global reactive power use during these two days.
 
 library(dplyr)
@@ -12,7 +11,6 @@ library(lubridate)
 url = "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip" 
 download.file(url, "Allhouseholdpower.zip")
 unzip("Allhouseholdpower.zip", exdir = "HouseholdData")
-
 
 ## Read the download data
 directory <- getwd()
@@ -28,7 +26,7 @@ Allneededdataplot4 <- filter(Allthedata, V1 >= "2007-02-01" & V1 <= "2007-02-02"
 namescolumns <- c("Date", "Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
 colnames(Allneededdataplot4) <- namescolumns
 
-## Converting the data from Factor to numeric, would be nicer to do this for all columns whic should be numeric (V3 .. V9)
+## Converting the data from Factor to numeric
 Allneededdataplot4$Global_active_power <- as.numeric(paste(Allneededdataplot4$Global_active_power)) 
 
 Allneededdataplot4$Sub_metering_1 <- as.numeric(paste(Allneededdataplot4$Sub_metering_1)) 
@@ -43,7 +41,7 @@ Allneededdataplot4$Global_reactive_power <- as.numeric(paste(Allneededdataplot4$
 Allneededdataplot4 <- mutate(Allneededdataplot3, DT = paste(Date, Time))
 
 ## Convert this extra column to a format it can be plotted (using the lubridate library)
-Allneededdataplot4$DT <- as_datetime(Allneededdataplot4$DT, tz = "UTC", format = NULL) ## Looks correct, library lubridate
+Allneededdataplot4$DT <- as_datetime(Allneededdataplot4$DT, tz = "UTC", format = NULL) 
 
 
 ## Creating the png file in the working directory

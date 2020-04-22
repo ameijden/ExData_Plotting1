@@ -1,12 +1,6 @@
 ## This script creates Plot 3
 
-## Step 1: Read the data
-## Step 2: First create the local plot
-## Step 3: Set the labels
-## Step 4: Create the PNG file
-
 ## Our overall goal here is simply to examine how household energy usage varies over a 2-day period in February, 2007
-
 ## Plot 3: Energy sub metering values during these two days
 
 library(dplyr)
@@ -33,7 +27,7 @@ Allneededdataplot3 <- filter(Allthedata, V1 >= "2007-02-01" & V1 <= "2007-02-02"
 namescolumns <- c("Date", "Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
 colnames(Allneededdataplot3) <- namescolumns
 
-## Converting the data from Factor to numeric, would be nicer to do this for all columns whic should be numeric (V3 .. V9)
+## Converting the data from Factor to numeric
 Allneededdataplot3$Global_active_power <- as.numeric(paste(Allneededdataplot3$Global_active_power)) 
 
 Allneededdataplot3$Sub_metering_1 <- as.numeric(paste(Allneededdataplot3$Sub_metering_1)) 
